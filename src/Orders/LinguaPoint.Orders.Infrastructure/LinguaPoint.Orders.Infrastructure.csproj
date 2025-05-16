@@ -18,9 +18,4 @@
       <ProjectReference Include="..\LinguaPoint.Orders.Domain\LinguaPoint.Orders.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Persistence\Configurations\" />
-      <Folder Include="Repositories\" />
-    </ItemGroup>
-
 </Project>

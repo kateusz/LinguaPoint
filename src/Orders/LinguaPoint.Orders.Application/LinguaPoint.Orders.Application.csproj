@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\LinguaPoint.Shared\LinguaPoint.Shared.csproj" />
+      <ProjectReference Include="..\LinguaPoint.Orders.Domain\LinguaPoint.Orders.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
