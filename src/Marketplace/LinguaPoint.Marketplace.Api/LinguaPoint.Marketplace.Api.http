@@ -1,0 +1,6 @@
+@LinguaPoint.Marketplace.Api_HostAddress = http://localhost:5168
+
+GET {{LinguaPoint.Marketplace.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
