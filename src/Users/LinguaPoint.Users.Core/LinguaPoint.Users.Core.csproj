@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\LinguaPoint.Shared.Types\LinguaPoint.Shared.Types.csproj" />
+      <ProjectReference Include="..\..\Shared\LinguaPoint.Shared.Types\LinguaPoint.Shared.Types.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Commands\" />
+    </ItemGroup>
+
 </Project>

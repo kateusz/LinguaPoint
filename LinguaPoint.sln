@@ -33,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Marketplace", "Marketplace"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reviews", "Reviews", "{2E84FA91-5D77-44EE-BA1D-7F09EBCF5417}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinguaPoint.Shared.Types", "src\LinguaPoint.Shared.Types\LinguaPoint.Shared.Types.csproj", "{45655979-5A50-4E75-B8A3-E11934063B0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinguaPoint.Shared.Types", "src\Shared\LinguaPoint.Shared.Types\LinguaPoint.Shared.Types.csproj", "{45655979-5A50-4E75-B8A3-E11934063B0B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinguaPoint.Marketplace.Domain", "src\Marketplace\LinguaPoint.Marketplace.Domain\LinguaPoint.Marketplace.Domain.csproj", "{995B3933-B6CF-49F1-857A-3495AA1161FD}"
 EndProject
@@ -60,6 +60,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinguaPoint.Users.Core", "src\Users\LinguaPoint.Users.Core\LinguaPoint.Users.Core.csproj", "{D73786FE-69D0-4B49-8508-054B6F4BC793}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinguaPoint.Users.Api", "src\Users\LinguaPoint.Users.Api\LinguaPoint.Users.Api.csproj", "{AD3CD185-7A72-42CC-BAC9-979E7805036C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinguaPoint.Shared", "src\Shared\LinguaPoint.Shared\LinguaPoint.Shared.csproj", "{DF09C099-5557-42D2-B58E-BF1DF600A498}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +149,10 @@ Global
 		{AD3CD185-7A72-42CC-BAC9-979E7805036C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD3CD185-7A72-42CC-BAC9-979E7805036C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD3CD185-7A72-42CC-BAC9-979E7805036C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF09C099-5557-42D2-B58E-BF1DF600A498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF09C099-5557-42D2-B58E-BF1DF600A498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF09C099-5557-42D2-B58E-BF1DF600A498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF09C099-5557-42D2-B58E-BF1DF600A498}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{59B4D08B-E4FC-48FC-8BE2-6C3D017C3AC2} = {294F0EF6-B0AE-4F55-9003-6366CC605963}
@@ -175,5 +181,6 @@ Global
 		{C8C6D74B-FDF9-4E08-9261-74C32B510C23} = {2E84FA91-5D77-44EE-BA1D-7F09EBCF5417}
 		{D73786FE-69D0-4B49-8508-054B6F4BC793} = {47A84269-9061-4ADB-B7C1-F174D36EE54A}
 		{AD3CD185-7A72-42CC-BAC9-979E7805036C} = {47A84269-9061-4ADB-B7C1-F174D36EE54A}
+		{DF09C099-5557-42D2-B58E-BF1DF600A498} = {70AA63A3-2BC1-46C3-9FCB-7A56D68836B1}
 	EndGlobalSection
 EndGlobal
