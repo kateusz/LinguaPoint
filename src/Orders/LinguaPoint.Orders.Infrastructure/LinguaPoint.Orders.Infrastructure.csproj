@@ -6,4 +6,21 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.5" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\LinguaPoint.Shared.Types\LinguaPoint.Shared.Types.csproj" />
+      <ProjectReference Include="..\..\Shared\LinguaPoint.Shared\LinguaPoint.Shared.csproj" />
+      <ProjectReference Include="..\LinguaPoint.Orders.Domain\LinguaPoint.Orders.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Persistence\Configurations\" />
+      <Folder Include="Repositories\" />
+    </ItemGroup>
+
 </Project>
