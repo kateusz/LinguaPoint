@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LinguaPoint.Shared.Commands;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LinguaPoint.Shared.Queries;
 
@@ -9,18 +10,18 @@ internal sealed class QueryDispatcher : IQueryDispatcher
     public QueryDispatcher(IServiceProvider serviceProvider)
         => _serviceProvider = serviceProvider;
 
-    public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query, CancellationToken cancellationToken = default)
+    public async Task<Result<TData>> QueryAsync<TData>(IQuery<TData> query, CancellationToken cancellationToken = default)
     {
         using var scope = _serviceProvider.CreateScope();
-        var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
+        var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TData));
         var handler = scope.ServiceProvider.GetRequiredService(handlerType);
-        var method = handlerType.GetMethod(nameof(IQueryHandler<IQuery<TResult>, TResult>.HandleAsync));
+        var method = handlerType.GetMethod(nameof(IQueryHandler<IQuery<TData>, TData>.Handle));
         if (method is null)
         {
-            throw new InvalidOperationException($"Query handler for '{typeof(TResult).Name}' is invalid.");
+            throw new InvalidOperationException($"Query handler for '{typeof(TData).Name}' is invalid.");
         }
 
         // ReSharper disable once PossibleNullReferenceException
-        return await (Task<TResult>)method.Invoke(handler, new object[] {query, cancellationToken});
+        return await (Task<Result<TData>>)method.Invoke(handler, new object[] {query, cancellationToken});
     }
 }

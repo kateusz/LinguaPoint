@@ -1,6 +1,7 @@
 ﻿using LinguaPoint.Shared.Commands;
 using LinguaPoint.Shared.Events;
 using LinguaPoint.Shared.Queries;
+using LinguaPoint.Shared.Types.Kernel;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LinguaPoint.Shared;

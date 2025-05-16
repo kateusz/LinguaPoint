@@ -1,6 +1,11 @@
 ﻿namespace LinguaPoint.Shared.Commands;
 
-public interface ICommandHandler<in TCommand> where TCommand : class, ICommand
+public interface ICommandHandler<in TCommand> where TCommand : ICommand
 {
-    Task Handle(TCommand command, CancellationToken cancellationToken = default);
+    Task<Result> Handle(TCommand command, CancellationToken cancellationToken = default);
+}
+
+public interface ICommandHandler<in TCommand, TResult> where TCommand : class, ICommand
+{
+    Task<Result<TResult>> Handle(TCommand command, CancellationToken cancellationToken = default);
 }

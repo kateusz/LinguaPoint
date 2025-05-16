@@ -8,7 +8,7 @@ internal static class Extensions
     {
         services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
         services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
-            .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
+            .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<,>)))
             .AsImplementedInterfaces()
             .WithScopedLifetime());
             

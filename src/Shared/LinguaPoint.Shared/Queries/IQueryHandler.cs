@@ -1,6 +1,8 @@
-﻿namespace LinguaPoint.Shared.Queries;
+﻿using LinguaPoint.Shared.Commands;
 
-public interface IQueryHandler<in TQuery, TResult> where TQuery : class, IQuery<TResult>
+namespace LinguaPoint.Shared.Queries;
+
+public interface IQueryHandler<in TQuery, TData> where TQuery : class, IQuery<TData>
 {
-    Task<TResult> HandleAsync(TQuery query, CancellationToken cancellationToken = default);
+    Task<Result<TData>> Handle(TQuery query, CancellationToken cancellationToken = default);
 }

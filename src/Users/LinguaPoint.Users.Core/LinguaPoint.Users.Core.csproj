@@ -9,10 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\LinguaPoint.Shared.Types\LinguaPoint.Shared.Types.csproj" />
       <ProjectReference Include="..\..\Shared\LinguaPoint.Shared.Types\LinguaPoint.Shared.Types.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Commands\" />
+      <ProjectReference Include="..\..\Shared\LinguaPoint.Shared\LinguaPoint.Shared.csproj" />
     </ItemGroup>
 
 </Project>

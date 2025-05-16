@@ -1,6 +1,8 @@
-﻿namespace LinguaPoint.Shared.Queries;
+﻿using LinguaPoint.Shared.Commands;
+
+namespace LinguaPoint.Shared.Queries;
 
 public interface IQueryDispatcher
 {
-    Task<TResult> QueryAsync<TResult>(IQuery<TResult> query, CancellationToken cancellationToken = default);
+    Task<Result<TData>> QueryAsync<TData>(IQuery<TData> query, CancellationToken cancellationToken = default);
 }

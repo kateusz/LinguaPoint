@@ -6,8 +6,6 @@ using Microsoft.Extensions.Logging;
 
 namespace LinguaPoint.Shared.Events;
 
-//NOTE: Ten dispatcher intencjonalnie nie publikuje zdarzen natychmiast,
-//inaczej mogloby powodowac nieswiadome uczestniczenie w tej samej transakcji wielu modulow
 internal sealed class EventDispatcher : IEventDispatcher, IHostedService, IDisposable
 {
     private readonly IServiceProvider _serviceProvider;
