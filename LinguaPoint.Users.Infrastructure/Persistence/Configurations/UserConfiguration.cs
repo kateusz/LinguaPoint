@@ -1,3 +1,4 @@
+using LinguaPoint.Shared.Types.Kernel.Types;
 using LinguaPoint.Users.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -9,6 +10,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.ToTable("Users");
+        
+        builder.Property(u => u.Id)
+            .HasConversion(
+                aggregateId => aggregateId.Value,      // To database (Guid)
+                dbValue => new AggregateId(dbValue)    // From database to AggregateId
+            );
         
         // Configure the Id property
         builder.HasKey(u => u.Id);

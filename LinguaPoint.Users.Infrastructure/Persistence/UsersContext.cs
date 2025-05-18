@@ -18,6 +18,7 @@ public class UsersContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema("users");
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UsersContext).Assembly);
         
         base.OnModelCreating(modelBuilder);

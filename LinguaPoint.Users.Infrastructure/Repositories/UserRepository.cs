@@ -45,7 +45,7 @@ public class UserRepository : IUserRepository
     public async Task<bool> EmailExists(Email email, CancellationToken cancellationToken = default)
     {
         return await _dbContext.Users
-            .AnyAsync(u => u.Email.Value == email.Value, cancellationToken);
+            .AnyAsync(u => u.Email == email, cancellationToken);
     }
 
     public async Task<IEnumerable<User>> GetTranslatorsWithLanguage(string languageCode,

@@ -1,6 +1,6 @@
 @Translations.Api_HostAddress = http://localhost:5215
 
-GET {{Translations.Api_HostAddress}}/weatherforecast/
+POST http://localhost:5215/users/
 Accept: application/json
 
 ###

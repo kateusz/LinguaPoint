@@ -1,7 +1,7 @@
 using LinguaPoint.Shared.Types.Kernel;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LinguaPoint.Users.Infrastructure.Services;
+namespace LinguaPoint.Shared.Events;
 
 public sealed class DomainEventDispatcher : IDomainEventDispatcher
 {
@@ -28,10 +28,10 @@ public sealed class DomainEventDispatcher : IDomainEventDispatcher
         {
             var handlerType = typeof(IDomainEventHandler<>).MakeGenericType(@event.GetType());
             var handlers = scope.ServiceProvider.GetServices(handlerType);
-                
-            var tasks = handlers.Select(x => (Task) handlerType
+
+            var tasks = handlers.Select(x => (Task)handlerType
                 .GetMethod(nameof(IDomainEventHandler<IDomainEvent>.HandleAsync))
-                ?.Invoke(x, new object[] {@event, cancellationToken}));
+                ?.Invoke(x, new object[] { @event, cancellationToken })) ?? [];
                 
             await Task.WhenAll(tasks);
         }

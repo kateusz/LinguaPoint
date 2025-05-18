@@ -1,21 +1,38 @@
 ﻿using LinguaPoint.Shared;
 using LinguaPoint.Shared.Database;
 using LinguaPoint.Shared.UserContext;
+using LinguaPoint.Users.Api;
 using LinguaPoint.Users.Infrastructure;
 
 namespace LinguaPoint.Api;
 
 internal static class Extensions
 {
-    public static void AddApiDependencies(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApiDependencies(this IServiceCollection services, IConfiguration configuration)
     {
-        //services.AddModules(configuration);
-        services.AddFramework();
-        services.AddUsers(configuration);
-        
+        services
+            .AddFramework()
+            .AddModules(configuration)
+            .AddHttpContextAccessor();
+
         //services.AddTransient<ExceptionHandlingMiddleware>();
         //services.AddTransient<NaiveAccessControlMiddleware>();
-        services.AddHttpContextAccessor();
+        
         //services.AddScoped<IUserContextAccessor, NaiveUserContextAccessor>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddModules(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddUsers(configuration);
+        return services;
+    }
+
+    public static IEndpointRouteBuilder RegisterModules(this IEndpointRouteBuilder builder)
+    {
+        builder.RegisterUserEndpoints();
+
+        return builder;
     }
 }
