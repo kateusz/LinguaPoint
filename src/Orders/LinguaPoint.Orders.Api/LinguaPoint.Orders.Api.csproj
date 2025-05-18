@@ -14,4 +14,8 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LinguaPoint.Orders.Application\LinguaPoint.Orders.Application.csproj" />
+    </ItemGroup>
+
 </Project>

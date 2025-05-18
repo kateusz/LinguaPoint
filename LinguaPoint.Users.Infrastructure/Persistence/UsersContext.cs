@@ -1,4 +1,5 @@
 using LinguaPoint.Shared.Types.Kernel;
+using LinguaPoint.Shared.Types.Kernel.Types;
 using LinguaPoint.Users.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +30,7 @@ public class UsersContext : DbContext
         // Dispatch domain events before saving changes
         if (_domainEventDispatcher != null)
         {
-            var entitiesWithEvents = ChangeTracker.Entries<User>()
+            var entitiesWithEvents = ChangeTracker.Entries<AggregateRoot>()
                 .Select(e => e.Entity)
                 .Where(e => e.Events.Any())
                 .ToArray();

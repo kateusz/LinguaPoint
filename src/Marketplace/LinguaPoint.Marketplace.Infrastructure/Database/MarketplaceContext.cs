@@ -1,3 +1,5 @@
+using LinguaPoint.Shared.Types.Kernel;
+using LinguaPoint.Shared.Types.Kernel.Types;
 using Microsoft.EntityFrameworkCore;
 
 namespace LinguaPoint.Marketplace.Infrastructure.Database;
@@ -5,6 +7,8 @@ namespace LinguaPoint.Marketplace.Infrastructure.Database;
 
 internal class MarketplaceContext : DbContext
 {
+    private readonly IDomainEventDispatcher? _domainEventDispatcher;
+    
     public MarketplaceContext(DbContextOptions<MarketplaceContext> options) : base(options)
     {
     }
@@ -16,11 +20,29 @@ internal class MarketplaceContext : DbContext
         return base.SaveChanges();
     }
 
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        //UpdateVersions();
-        
-        return base.SaveChangesAsync(cancellationToken);
+        // Dispatch domain events before saving changes
+        if (_domainEventDispatcher != null)
+        {
+            var entitiesWithEvents = ChangeTracker.Entries<AggregateRoot>()
+                .Select(e => e.Entity)
+                .Where(e => e.Events.Any())
+                .ToArray();
+
+            foreach (var entity in entitiesWithEvents)
+            {
+                var events = entity.Events.ToArray();
+                entity.ClearEvents();
+                
+                foreach (var domainEvent in events)
+                {
+                    await _domainEventDispatcher.DispatchAsync(domainEvent, cancellationToken);
+                }
+            }
+        }
+
+        return await base.SaveChangesAsync(cancellationToken);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

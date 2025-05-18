@@ -1,6 +1,6 @@
-﻿using LinguaPoint.Shared;
-using LinguaPoint.Shared.Database;
-using LinguaPoint.Shared.UserContext;
+﻿using LinguaPoint.Orders.Api;
+using LinguaPoint.Orders.Infrastructure;
+using LinguaPoint.Shared;
 using LinguaPoint.Users.Api;
 using LinguaPoint.Users.Infrastructure;
 
@@ -26,12 +26,14 @@ internal static class Extensions
     private static IServiceCollection AddModules(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddUsers(configuration);
+        services.AddOrders(configuration); 
         return services;
     }
 
     public static IEndpointRouteBuilder RegisterModules(this IEndpointRouteBuilder builder)
     {
         builder.RegisterUserEndpoints();
+        builder.RegisterOrderEndpoints(); 
 
         return builder;
     }

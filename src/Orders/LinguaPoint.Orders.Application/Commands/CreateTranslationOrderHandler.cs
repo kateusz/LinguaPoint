@@ -8,9 +8,6 @@ using Microsoft.Extensions.Logging;
 
 namespace LinguaPoint.Orders.Application.Commands;
 
-/// <summary>
-/// Handler for creating a new translation order
-/// </summary>
 internal class CreateTranslationOrderHandler : ICommandHandler<CreateTranslationOrderCommand, TranslationOrderDto>
 {
     private readonly IOrderRepository _orderRepository;

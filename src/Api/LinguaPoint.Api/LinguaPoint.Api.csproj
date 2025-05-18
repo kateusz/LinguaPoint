@@ -19,6 +19,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\LinguaPoint.Users.Infrastructure\LinguaPoint.Users.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\Orders\LinguaPoint.Orders.Api\LinguaPoint.Orders.Api.csproj" />
+      <ProjectReference Include="..\..\Orders\LinguaPoint.Orders.Infrastructure\LinguaPoint.Orders.Infrastructure.csproj" />
       <ProjectReference Include="..\..\Shared\LinguaPoint.Shared\LinguaPoint.Shared.csproj" />
       <ProjectReference Include="..\..\Users\LinguaPoint.Users.Api\LinguaPoint.Users.Api.csproj" />
     </ItemGroup>

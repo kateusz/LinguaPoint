@@ -101,10 +101,8 @@ public class TranslationOrder : AggregateRoot
             throw new InvalidOperationException("Cannot accept offer in the current order state.");
 
         var offer = _offers.Find(x => x.TranslatorId == translatorId);
-        if (offer is null)
-            throw new InvalidOperationException("No offer from this translator was found.");
 
-        _acceptedOffer = offer;
+        _acceptedOffer = offer ?? throw new InvalidOperationException("No offer from this translator was found.");
         Status = OrderStatus.OfferAccepted;
 
         AddEvent(new TranslationOfferAccepted(Id, translatorId, offer.Price.Amount, offer.Price.Currency,

@@ -2,9 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using LinguaPoint.Shared.Commands;
 
 namespace LinguaPoint.Orders.Application.Commands;
-/// <summary>
-/// Command to create a new translation order in the system
-/// </summary>
+
 public record CreateTranslationOrderCommand : ICommand
 {
     /// <summary>

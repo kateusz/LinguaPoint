@@ -1,5 +1,6 @@
 using LinguaPoint.Orders.Domain.Orders;
 using LinguaPoint.Shared.Types.Kernel;
+using LinguaPoint.Shared.Types.Kernel.Types;
 using Microsoft.EntityFrameworkCore;
 
 namespace LinguaPoint.Orders.Infrastructure.Persistence;
@@ -18,15 +19,31 @@ public class OrdersContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrdersContext).Assembly);
-        
-        base.OnModelCreating(modelBuilder);
+        modelBuilder.HasDefaultSchema("orders");
+        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         // Dispatch domain events before saving changes
-        // TODO: FInish it
+        if (_domainEventDispatcher != null)
+        {
+            var entitiesWithEvents = ChangeTracker.Entries<AggregateRoot>()
+                .Select(e => e.Entity)
+                .Where(e => e.Events.Any())
+                .ToArray();
+
+            foreach (var entity in entitiesWithEvents)
+            {
+                var events = entity.Events.ToArray();
+                entity.ClearEvents();
+                
+                foreach (var domainEvent in events)
+                {
+                    await _domainEventDispatcher.DispatchAsync(domainEvent, cancellationToken);
+                }
+            }
+        }
 
         return await base.SaveChangesAsync(cancellationToken);
     }
